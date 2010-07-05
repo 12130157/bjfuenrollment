@@ -10,11 +10,12 @@ public class GoodsVO {
 	private String material;   //
 	private int related;       // 相关产品
 	private String fit_for;    // 适用人群
+	private int is_promoted;
 	
 	
 	public GoodsVO(String name, String descri, int type,
 			int pics, String taste, int sweety, String material, int related,
-			String fitFor) {
+			String fitFor,int isPromoted) {
 		super();
 		this.name = name;
 		this.descri = descri;
@@ -25,6 +26,7 @@ public class GoodsVO {
 		this.material = material;
 		this.related = related;
 		fit_for = fitFor;
+		is_promoted = isPromoted;
 	}
 	public String getName() {
 		return name;
@@ -80,6 +82,11 @@ public class GoodsVO {
 	public void setFit_for(String fitFor) {
 		fit_for = fitFor;
 	}
-	
+	public int getIs_promoted() {
+		return is_promoted;
+	}
+	public void setIs_promoted(int isPromoted) {
+		this.is_promoted = isPromoted;
+	}
 	
 }
