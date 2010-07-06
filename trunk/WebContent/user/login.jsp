@@ -8,8 +8,8 @@
 </head>
 <body>
 <% 
-if(request.getAttribute("error") != null) {
-	out.println("<span class='error'>" + (String) request.getAttribute("error") + "</span>");	
+if(session.getAttribute("error") != null) {
+	out.println("<span class='error'>" + (String) session.getAttribute("error") + "</span>");	
 }
 %>
 <form method="post" action="login.do">
