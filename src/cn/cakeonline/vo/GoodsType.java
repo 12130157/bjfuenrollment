@@ -5,9 +5,7 @@ public class GoodsType {
 	private int goods_id;
 	private int type_id;
 	private String price;
-	public GoodsType(int id, int goodsId, int typeId, String price) {
-		super();
-		this.id = id;
+	public GoodsType(int goodsId, int typeId, String price) {
 		goods_id = goodsId;
 		type_id = typeId;
 		this.price = price;
@@ -35,6 +33,5 @@ public class GoodsType {
 	}
 	public void setPrice(String price) {
 		this.price = price;
-	}
-	
+	}	
 }

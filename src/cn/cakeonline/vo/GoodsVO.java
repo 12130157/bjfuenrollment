@@ -1,22 +1,23 @@
 package cn.cakeonline.vo;
 
 public class GoodsVO {
+	private int goodsId;
 	private String name;
 	private String descri;
 	private int type;
+	private int is_promoted;
 	private int pics;
 	private String taste;
 	private int sweety;
-	private String material;   //
+	private String material;   // 原料
 	private int related;       // 相关产品
 	private String fit_for;    // 适用人群
-	private int is_promoted;
+	
 	
 	
 	public GoodsVO(String name, String descri, int type,
 			int pics, String taste, int sweety, String material, int related,
-			String fitFor,int isPromoted) {
-		super();
+			String fitFor) {
 		this.name = name;
 		this.descri = descri;
 		this.type = type;
@@ -26,7 +27,7 @@ public class GoodsVO {
 		this.material = material;
 		this.related = related;
 		fit_for = fitFor;
-		is_promoted = isPromoted;
+		//is_promoted = isPromoted; 是否促销，不构造
 	}
 	public String getName() {
 		return name;
@@ -87,6 +88,12 @@ public class GoodsVO {
 	}
 	public void setIs_promoted(int isPromoted) {
 		this.is_promoted = isPromoted;
+	}
+	public int getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(int goodsId) {
+		this.goodsId = goodsId;
 	}
 	
 }

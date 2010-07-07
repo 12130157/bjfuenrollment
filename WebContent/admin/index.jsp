@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台中心</title>
 <link href="../css/admin.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
 </head>
 <body>
 <h2 class="admin_tips">后台管理中心</h2>

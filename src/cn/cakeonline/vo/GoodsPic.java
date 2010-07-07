@@ -23,12 +23,6 @@ public class GoodsPic {
 	public void setImg_path(String imgPath) {
 		img_path = imgPath;
 	}
-	public String getImg_small_path() {
-		return img_small_path;
-	}
-	public void setImg_small_path(String imgSmallPath) {
-		img_small_path = imgSmallPath;
-	}
 	public GoodsPic(int id, int goodsId, String imgPath, String imgSmallPath) {
 		super();
 		this.id = id;

@@ -20,7 +20,7 @@ public class UserDAO extends DAO implements UserDaoInf {
 	private Connection conn;
 
 	@Override
-	public UserVO getUser(String userName) throws Exception {
+	public UserVO getUser(String userName){
 		// 获取当前数据库连接
 		String sql = "select * from users where username = ?";
 		try {

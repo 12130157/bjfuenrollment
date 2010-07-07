@@ -7,6 +7,6 @@
 <title>会员中心</title>
 </head>
 <body>
-登录成功！<%=session.getAttribute("user") %>
+登录成功！<%=session.getAttribute("username") %>
 </body>
 </html>
