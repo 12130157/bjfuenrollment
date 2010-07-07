@@ -38,19 +38,27 @@ public class LoginServlet extends HttpServlet {
 				UserDAO dao = new UserDAO();
 				boolean suc = dao.login(uvo); // 调用DAO登录函数
 				if(suc) { //登录成功
-					session.setAttribute("user", username);
-					request.setAttribute("error", null);
+					session.setAttribute("username", username);
+					// 获取登录user对象
+					UserVO user = dao.getUser(username);
+					if(user != null) {
+						// 并存到session中
+						session.setAttribute("user", user);
+					}else{
+						session.setAttribute("user", null);
+					}
+					session.setAttribute("error", null);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}else{
-					request.setAttribute("error", "用户名或密码错误");
+					session.setAttribute("error", "用户名或密码错误");
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 				}
 			}else{
-				request.setAttribute("error", "用户名或密码长度过长");
+				session.setAttribute("error", "用户名或密码长度过长");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		}else{
-			request.setAttribute("error", "用户名或密码不能为空！");
+			session.setAttribute("error", "用户名或密码不能为空！");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}

@@ -11,18 +11,19 @@ public class DAO {
 	private final String HOST = "jdbc:mysql://localhost:3306/cakeonline";
 	private final String USERNAME = "root";
 	private final String PASSWORD = "qeephp";
-	
+
 	/**
 	 * 连接数据库
 	 * 
 	 * @return
 	 */
 	public Connection getConn() {
+		Connection conn = null;
 		// 加载驱动程序以连接数据库
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = (Connection) DriverManager.getConnection(HOST,
-					USERNAME, PASSWORD);
+			conn = (Connection) DriverManager.getConnection(HOST, USERNAME,
+					PASSWORD);
 			return conn;
 		}
 		// 捕获加载驱动程序异常
@@ -41,8 +42,8 @@ public class DAO {
 	}
 
 	/**
-	 * 执行sql语句，并返回ResultSet
-	 * 该SQL语句是一个完整的字符串语句，不带参数
+	 * 执行sql语句，并返回ResultSet 该SQL语句是一个完整的字符串语句，不带参数
+	 * 
 	 * @param sql
 	 *            String SQL语句
 	 * @return ResultSet || null

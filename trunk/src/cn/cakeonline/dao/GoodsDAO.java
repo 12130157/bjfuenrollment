@@ -55,7 +55,7 @@ public class GoodsDAO extends DAO {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, v.getName());
 			ps.setString(2, v.getDescri());
-			ps.setInt(3, 4);
+			ps.setInt(3, 5); // 类型有5种
 			ps.setInt(4, 0);
 			ps.setInt(5, 0);
 			ps.setString(6, v.getTaste());
@@ -64,12 +64,42 @@ public class GoodsDAO extends DAO {
 			ps.setString(9, v.getMaterial());
 			ps.setInt(10, 0);
 			int result = (int) ps.executeUpdate();
-			if(result != -1) {
+			if (result != -1) {
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public int getLastId() {
+		// 如果数据库连接成功，则进行SQL操作
+		String sql = "SELECT * FROM goods order by goods_id desc limit 1";
+		ResultSet rs = this.query(sql);
+		try {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public GoodsVO getOne(int id) {
+		String sql = "SELECT * FROM goods where goods_id = " + id;
+		ResultSet rs = this.query(sql);
+		try {
+			if (rs.next()) {
+				GoodsVO vo = new GoodsVO(rs.getString(2), rs.getString(3), rs
+						.getInt(4), rs.getInt(6), rs.getString(7),
+						rs.getInt(8), rs.getString(10), rs.getInt(11), rs.getString(9));
+				return vo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
