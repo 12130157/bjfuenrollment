@@ -1,0 +1,30 @@
+
+
+  <html>
+  <head><title></title>
+
+  <style type="text/css">
+
+
+.tip{
+border:1px #ccc dotted;
+background-color:#E4F2FF;
+padding:10px;
+font-size:12px;
+margin-bottom:10px;
+line-height:30px;
+}
+
+  </style>
+  </head>
+  <body bgcolor="#FFFFFF">
+  <table width="100%" height="80" border="0">
+
+    <tr>
+      <td height="53" width="100%"  id="message1"><div class="tip">该页面已删除或已改名</div>
+</td>
+    </tr>
+  </table>
+
+</body>
+</html>
