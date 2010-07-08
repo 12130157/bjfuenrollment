@@ -1,7 +1,5 @@
 package cn.cakeonline.vo;
 
-import java.sql.Timestamp;
-
 public class UserVO {
 	private int userId;
 	private String username;

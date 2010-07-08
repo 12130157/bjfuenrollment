@@ -30,7 +30,7 @@ public interface UserDaoInf {
 	 *            UserVO
 	 * @return
 	 */
-	public int updateUser(UserVO user);
+	public boolean updateUser(UserVO user);
 
 	/**
 	 * 添加用户记录

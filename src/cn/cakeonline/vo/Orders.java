@@ -6,19 +6,26 @@ public class Orders {
 	private int address;
 	private int user_id;
 	private int goods_num;
-	private int oreer_time;
+	private int order_time;
 	private double checkout;
 
 	public Orders(int orderId, int operated, int address, int userId,
 			int goodsNum, int oreerTime, double checkout) {
-		super();
 		order_id = orderId;
 		this.operated = operated;
 		this.address = address;
 		user_id = userId;
 		goods_num = goodsNum;
-		oreer_time = oreerTime;
+		order_time = oreerTime;
 		this.checkout = checkout;
+	}
+
+	public int getOrder_time() {
+		return order_time;
+	}
+
+	public void setOrder_time(int orderTime) {
+		order_time = orderTime;
 	}
 
 	public int getOrder_id() {
@@ -59,14 +66,6 @@ public class Orders {
 
 	public void setGoods_num(int goodsNum) {
 		goods_num = goodsNum;
-	}
-
-	public int getOreer_time() {
-		return oreer_time;
-	}
-
-	public void setOreer_time(int oreerTime) {
-		oreer_time = oreerTime;
 	}
 
 	public double getCheckout() {

@@ -2,6 +2,7 @@ package cn.cakeonline.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
@@ -87,19 +88,50 @@ public class GoodsDAO extends DAO {
 		return 0;
 	}
 
+	/**
+	 * 根据ID取VO
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public GoodsVO getOne(int id) {
 		String sql = "SELECT * FROM goods where goods_id = " + id;
 		ResultSet rs = this.query(sql);
 		try {
 			if (rs.next()) {
-				GoodsVO vo = new GoodsVO(rs.getString(2), rs.getString(3), rs
-						.getInt(4), rs.getInt(6), rs.getString(7),
-						rs.getInt(8), rs.getString(10), rs.getInt(11), rs.getString(9));
+				GoodsVO vo = new GoodsVO(rs.getInt(1), rs.getString(2), rs
+						.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getInt(6), rs.getString(7), rs.getInt(8), rs
+								.getString(9), rs.getString(10), rs.getInt(11));
 				return vo;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 * 获取所有商品 order by operated desc,order_time desc
+	 * 
+	 * @return
+	 */
+	public ArrayList<GoodsVO> getAll() {
+		String sql = "SELECT * FROM goods ORDER BY goods_id DESC";
+		ResultSet rs = this.query(sql);
+		// 用list存储用户订单
+		ArrayList<GoodsVO> list = new ArrayList<GoodsVO>();
+		try {
+			while (rs.next()) {
+				GoodsVO vo = new GoodsVO(rs.getInt(1), rs.getString(2), rs
+						.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getInt(6), rs.getString(7), rs.getInt(8), rs
+								.getString(9), rs.getString(10), rs.getInt(11));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

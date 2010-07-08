@@ -6,8 +6,11 @@
 <%@ page import="cn.cakeonline.vo.Orders"%>
 <%@ page import="cn.cakeonline.dao.OrdersDAO"%>
 <%@ page import="cn.cakeonline.dao.OrdersGoodsDAO"%>
+<%@ page import="cn.cakeonline.vo.UserVO"%>
 <%
-	if (session.getAttribute("admin") != null) {
+	UserVO user = null;
+	if (session.getAttribute("user") != null) {
+		user = (UserVO) session.getAttribute("user");
 		OrdersDAO dao = new OrdersDAO();
 		ArrayList<Orders> list = dao.getAll();
 %>
@@ -15,47 +18,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查看所有订单</title>
-<link href="../css/admin.css" rel="stylesheet" type="text/css" />
+<title>查看我的订单</title>
 </head>
 <body>
-<div id="left_side">
-<h4>管理员操作</h4>
-<ul>
-	<li><a href="gettypes.do">添加商品</a></li>
-	<li><a href="viewusers.do">查看所有用户</a></li>
-	<li><a href="vieworders.do">查看所有订单</a></li>
-</ul>
-</div>
-<div id="main_content">
+<h3>我的订单</h3>
 <table class="order_list">
 	<tr>
 		<th>&nbsp;</th>
 		<th>订单号</th>
-		<th>用户ID</th>
 		<th>下单时间</th>
 		<th>商品数</th>
 		<th>总金额</th>
+		<th>状态</th>
 		<th>操作</th>
 	</tr>
 	<%
-		for (int i = 0; i < list.size(); i++) {
+		for(int i = 0; i < list.size(); i++) {
 			Orders o = list.get(i);
 	%>
 	<tr>
 		<td>&nbsp;</td>
-		<td><%=o.getOrder_id()%></td>
-		<td><%=o.getUser_id()%></td>
-		<td><%=o.getOrder_time()%></td>
-		<td><%=o.getGoods_num()%></td>
-		<td><%=o.getCheckout()%></td>
-		<td></td>
+		<td><%=o.getOrder_id() %></td>
+		<td><%=o.getOrder_time() %></td>
+		<td><%=o.getGoods_num() %></td>
+		<td><%=o.getCheckout() %></td>
+		<td>
+		<%
+			if(o.getOperated() == 0) {
+				out.print("等待付款");
+			}else if(o.getOperated() == 1) {
+				out.print("已付款，等待发货...");
+			}else if(o.getOperated() == 2) {
+				out.print("已发货，请注意查收");
+			}else if(o.getOperated() == 3) {
+				out.print("已签收");
+			}
+		%>
+		</td>
+		<td><a class="show">展开详情</a></td>
 	</tr>
 	<%
 		}
 	%>
 </table>
-</div>
 </body>
 </html>
 <%

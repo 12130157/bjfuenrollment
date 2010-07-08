@@ -19,21 +19,20 @@ import com.mysql.jdbc.ResultSet;
 public class UserDAO extends DAO implements UserDaoInf {
 	private Connection conn;
 
-	@Override
-	public UserVO getUser(String userName){
+	public UserVO getUser(String userName) {
 		// 获取当前数据库连接
 		String sql = "select * from users where username = ?";
 		try {
 			PreparedStatement ps = (PreparedStatement) this.getConn()
 					.prepareStatement(sql);
-			ps.setString(0, userName);
+			ps.setString(1, userName);
 			ResultSet rs = (ResultSet) ps.executeQuery();
 			if (rs.next()) {
 				// 如果有记录数
-				UserVO vo = new UserVO(rs.getInt(0), rs.getString(1), rs
-						.getString(2), rs.getString(3), rs.getInt(4), rs
-						.getString(5), rs.getInt(6), rs.getString(7), rs
-						.getInt(8));
+				UserVO vo = new UserVO(rs.getInt(1), rs.getString(2), rs
+						.getString(3), rs.getString(4), rs.getInt(5), rs
+						.getString(6), rs.getInt(7), rs.getString(8), rs
+						.getInt(9));
 				return vo;
 			}
 		} catch (SQLException e) {
@@ -42,7 +41,6 @@ public class UserDAO extends DAO implements UserDaoInf {
 		return null;
 	}
 
-	@Override
 	public boolean login(UserVO user) {
 		// 获取当前数据库连接
 		conn = this.getConn();
@@ -59,14 +57,14 @@ public class UserDAO extends DAO implements UserDaoInf {
 			ResultSet rs = (ResultSet) ps.executeQuery();
 			if (rs.next()) {
 				// 如果有记录数，更新登录时间和IP
-				String newSql = "update users set last_login_at = ? and last_login_ip = ? where user_id = ?";
+				String newSql = "update users set last_login_at = ?,last_login_ip = ? where user_id = ?";
 				try {
 					PreparedStatement newPs = (PreparedStatement) conn
 							.prepareStatement(newSql);
 					newPs.setInt(1, user.getLastLoginAt());
 					newPs.setString(2, user.getLastLoginIp());
 					newPs.setInt(3, rs.getInt(1));
-					int count =  newPs.executeUpdate();
+					int count = newPs.executeUpdate();
 					if (count != -1) {
 						return true;
 					}
@@ -81,33 +79,51 @@ public class UserDAO extends DAO implements UserDaoInf {
 		return false;
 	}
 
-	@Override
 	public boolean addUser(UserVO user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean deleteUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public List<UserVO> getAllUsers() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public UserVO queryUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public int updateUser(UserVO user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateUser(UserVO user) {
+		conn = this.getConn();
+		String sql = "UPDATE users SET password=?, nickname=?, gender=?, email=?, "
+				+ "last_login_at=?, last_login_ip=?, balance=?"
+				+ " WHERE user_id=?";
+		PreparedStatement ps;
+		try {
+			ps = (PreparedStatement) conn.prepareStatement(sql);
+			// 设置参数
+			ps.setString(1, user.getPassword());
+			ps.setString(2, user.getNickname());
+			ps.setInt(3,user.getGender());
+			ps.setString(4, user.getEmail());
+			ps.setInt(5, user.getLastLoginAt());
+			ps.setString(6, user.getLastLoginIp());
+			ps.setDouble(7, user.getBalance());
+			ps.setInt(8, user.getUserId());
+			
+			int rs = ps.executeUpdate();
+			if(rs > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
