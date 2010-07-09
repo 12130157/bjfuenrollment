@@ -79,8 +79,27 @@ public class UserDAO extends DAO implements UserDaoInf {
 		return false;
 	}
 
+	/**
+	 * 添加用户
+	 */
 	public boolean addUser(UserVO user) {
-		// TODO Auto-generated method stub
+		if (conn == null)
+			conn = getConn();
+		try {
+			PreparedStatement pst = (PreparedStatement) conn
+					.prepareStatement("insert into users(username,password,last_login_at,last_login_ip)"
+							+ " values(?,?,?,?)");
+			pst.setString(1, user.getUsername().trim());
+			pst.setString(2, user.getPassword().trim());
+			pst.setInt(3, user.getLastLoginAt());
+			pst.setString(4, user.getLastLoginIp());
+			int num = pst.executeUpdate();
+			if (num != -1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -110,15 +129,15 @@ public class UserDAO extends DAO implements UserDaoInf {
 			// 设置参数
 			ps.setString(1, user.getPassword());
 			ps.setString(2, user.getNickname());
-			ps.setInt(3,user.getGender());
+			ps.setInt(3, user.getGender());
 			ps.setString(4, user.getEmail());
 			ps.setInt(5, user.getLastLoginAt());
 			ps.setString(6, user.getLastLoginIp());
 			ps.setDouble(7, user.getBalance());
 			ps.setInt(8, user.getUserId());
-			
+
 			int rs = ps.executeUpdate();
-			if(rs > 0) {
+			if (rs > 0) {
 				return true;
 			}
 		} catch (SQLException e) {

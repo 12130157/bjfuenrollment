@@ -48,10 +48,10 @@ public class LoginServlet extends HttpServlet {
 						session.setAttribute("user", null);
 					}
 					session.setAttribute("error", null);
-					request.getRequestDispatcher("index.jsp").forward(request, response);
+					response.sendRedirect("index.jsp");
 				}else{
 					session.setAttribute("error", "用户名或密码错误");
-					request.getRequestDispatcher("login.jsp").forward(request, response);
+					response.sendRedirect("login.jsp");
 				}
 			}else{
 				session.setAttribute("error", "用户名或密码长度过长");

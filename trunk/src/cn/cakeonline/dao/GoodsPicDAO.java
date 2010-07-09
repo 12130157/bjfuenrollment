@@ -3,6 +3,7 @@ package cn.cakeonline.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import cn.cakeonline.vo.GoodsPic;
@@ -36,5 +37,24 @@ public class GoodsPicDAO extends DAO {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * 根据商品ID获取图片路径
+	 * @param id
+	 * @return
+	 */
+	public String getPic(int id) {
+		String pic = "";
+		String sql = "SELECT * FROM goods_pic WHERE goods_id = " + id;
+		ResultSet rs = this.query(sql);
+		try {
+			if(rs.next()) {
+				pic = rs.getString(3);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pic;
 	}
 }
