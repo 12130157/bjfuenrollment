@@ -28,4 +28,23 @@ public class TypeDAO extends DAO{
 		}
 		return li;
 	}
+	
+	/**
+	 * 根据typeID查询规格
+	 * @param id
+	 * @return String
+	 */
+	public String getOne(int id) {
+		String type = "";
+		String sql = "select * from type where type_id = " + id;
+		ResultSet rs = this.query(sql);
+		try {
+			if(rs.next()) {
+				type = rs.getString(2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return type;
+	}
 }

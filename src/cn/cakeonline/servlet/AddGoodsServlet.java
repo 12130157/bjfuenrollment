@@ -44,8 +44,8 @@ public class AddGoodsServlet extends HttpServlet {
 		String[] price = request.getParameterValues("price");
 
 		// 构造VO
-		GoodsVO gvo = new GoodsVO(name, desc, type, pics, taste, sweety,
-				material, 0, null);
+		GoodsVO gvo = new GoodsVO(0, name, desc, type, 0, pics, taste, sweety,
+				"", material, 0);
 		// 构造List
 		List<GoodsVO> arr = new ArrayList<GoodsVO>();
 		arr.add(gvo); // 将VO加至List

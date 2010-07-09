@@ -48,7 +48,7 @@ public class AddToCartServlet extends HttpServlet {
 
 		// 设置GoodsTypeVO
 		GoodsTypeDAO gtd = new GoodsTypeDAO();
-		double total = gtd.getPrice(id, type);
+		double total = gtd.getPrice(id, type) * num;
 		OrdersGoods newOne = new OrdersGoods(0, 0, id, type, num, total);
 
 		// 获取Session
