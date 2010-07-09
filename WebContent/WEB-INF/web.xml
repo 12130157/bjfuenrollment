@@ -95,4 +95,14 @@
     <servlet-name>UserCheckout</servlet-name>
     <url-pattern>/user/checkout.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>用户注册</description>
+    <display-name>UserRegisterServlet</display-name>
+    <servlet-name>UserRegisterServlet</servlet-name>
+    <servlet-class>cn.cakeonline.servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRegisterServlet</servlet-name>
+    <url-pattern>/user/register.do</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,0 +1,53 @@
+
+img {
+    vertical-align:bottom;
+	}
+
+.gallery {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.gallery li {
+	padding: 0px;
+	margin: 0;
+	float: left;
+	position: relative;
+	width: 220px;
+	height: 180px;
+}
+.gallery li:hover img {
+	border-color: #000;
+}
+.gallery img {
+	background: #fff;
+	border: solid 0px #ccc;
+	padding: 0px;
+}
+.gallery a {
+	text-decoration: none;
+	cursor: hand;
+}
+.gallery span {
+	width: 190px;
+	height: 170px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: url(../images/kuang.png) no-repeat;
+	z-index: 3;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/kuang.png');
+}
+
+.txtempha {
+	    color: #A5134E; 
+}
+.txtempha1 {	
+       color: #a5134e
+}
+
+.error {
+display:block;
+text-align:center;
+}
